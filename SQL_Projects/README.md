@@ -1,131 +1,74 @@
-Project: SQL Query Solutions for Employee and Client Data Analysis
+<h1>SQL Query Solutions for Employee and Client Data Analysis</h1>
+<h2>Overview</h2>
+<p>This project involves analyzing employee, branch, client, and supplier data to address various business questions. The focus is on extracting meaningful insights using SQL queries that help in decision-making processes related to employee salaries, client interactions, sales performance, and more.</p>
 
-Overview
+<h2>Project Details</h2>
+<h3>1. Maximum Salary among Female Employees in the Corporate Branch</h3>
+<p><strong>Objective:</strong> Identify the highest salary earned by female employees within the Corporate branch.</p>
+<h3>2. Employee Details with Client Count for High Earners</h3>
+<p><strong>Objective:</strong> Retrieve details of employees who work with clients and have salaries greater than $50,000. The result includes the number of clients each employee is associated with.</p>
 
-This project involves writing SQL queries to address various business questions related to employees, branches, clients, and suppliers in an organization. The goal is to extract meaningful insights from the database to support decision-making processes. The queries focus on tasks such as calculating salaries, counting clients, retrieving employee details, and analyzing sales data.
+<h3>3. Average Salary of Male Employees in the Scranton Branch</h3>
+<p><strong>Objective:</strong> Calculate the average salary of male employees who work in the Scranton branch.</p>
 
-Project Details
-Maximum Salary among Female Employees in the Corporate Branch
+<h3>4. Client Count per Branch with a Minimum of 5 Clients</h3>
+<p><strong>Objective:</strong> Identify branches with more than five clients and determine the number of clients for those branches.</p>
 
-Objective: Identify the highest salary earned by female employees in the "Corporate" branch.
-Query:
-sql
-Copy code
-SELECT branch_name 'Branch', MAX(salary) 'Salary' 
-FROM employees e1 
-INNER JOIN branches b1 ON e1.branch_id = b1.branch_id 
-WHERE sex = 'F' AND branch_name = 'Corporate';
-Employee Details with Client Count for High Earners
+<h3>5. Total Sales by Employees in the Corporate Branch</h3>
+<p><strong>Objective:</strong> Determine the total sales made by employees in the Corporate branch who have sales exceeding $100,000.</p>
 
-Objective: Retrieve employee details along with the count of clients they work with, focusing on employees with salaries greater than $50,000.
-Queries:
-sql
-Copy code
-SELECT emp_id, first_name, last_name, birth_date, sex, salary, super_id, e1.branch_id, COUNT(client_id) 
-FROM employees e1 
-INNER JOIN clients c1 ON e1.branch_id = c1.branch_id 
-WHERE salary > 50000;
-sql
-Copy code
-SELECT emp_id, first_name, last_name, birth_date, sex, salary, super_id, e1.branch_id, client_id 
-FROM employees e1 
-INNER JOIN clients c1 ON e1.branch_id = c1.branch_id 
-WHERE salary > 50000;
-Average Salary of Male Employees in the Scranton Branch
+<h3>6. Total Sales for Each Client in the Corporate Branch</h3>
+<p><strong>Objective:</strong> Retrieve the total sales figures for each client associated with the Corporate branch.</p>
 
-Objective: Calculate the average salary of male employees in the "Scranton" branch.
-Query:
-sql
-Copy code
-SELECT AVG(salary) 
-FROM employees e1 
-INNER JOIN branches b1 ON e1.branch_id = b1.branch_id 
-WHERE sex = 'M' AND branch_name = 'Scranton';
-Client Count per Branch with a Minimum of 5 Clients
+<h3>7. Details of Female Employees with Salary above $70,000</h3>
+<p><strong>Objective:</strong> Obtain details of female employees who earn more than $70,000.</p>
 
-Objective: Retrieve the count of clients for each branch where the count is greater than 5.
-Query:
-sql
-Copy code
-SELECT COUNT(*) 
-FROM clients 
-GROUP BY branch_id 
-HAVING COUNT(*) > 5;
-Total Sales by Employees in the Corporate Branch
+<h3>8. Clients with Names Starting with 'T'</h3>
+<p><strong>Objective:</strong> Identify clients whose names begin with the letter 'T'.</p>
 
-Objective: Find the total sales made by each employee in the "Corporate" branch with sales exceeding $100,000.
-Query:
-sql
-Copy code
-SELECT total_sales 
-FROM sales s 
-INNER JOIN branches b 
-INNER JOIN employees e ON e.emp_id = s.emp_id = b.mgr_id 
-GROUP BY branch_name 
-HAVING branch_name = 'Corporate';
-Total Sales for Each Client in the Corporate Branch
+<h3>9. Employees Sorted by Salary in Descending Order</h3>
+<p><strong>Objective:</strong> List employees by their names, sorted from the highest to lowest salary.</p>
 
-Objective: Retrieve the total sales for each client in the "Corporate" branch.
-Query:
-sql
-Copy code
-SELECT client_id, total_sales 
-FROM sales s 
-INNER JOIN branches b ON mgr_id = emp_id 
-WHERE branch_name = 'Corporate' 
-GROUP BY client_id;
-Details of Female Employees with Salary above $70,000
+<h3>10. Clients Sorted Alphabetically by Their Names</h3>
+<p><strong>Objective:</strong> Retrieve a list of clients, sorted alphabetically by their names.</p>
 
-Objective: Retrieve details of female employees with a salary above $70,000.
-Query:
-sql
-Copy code
-SELECT * 
-FROM employees 
-WHERE sex = 'F' AND salary > 70000;
-Clients with Names Starting with 'T'
+<h2>Additional Objectives</h2>
 
-Objective: Find the clients whose names start with 'T'.
-Query:
-sql
-Copy code
-SELECT client_name 
-FROM clients 
-WHERE client_name LIKE 'T%';
-Employees Sorted by Salary in Descending Order
+<h3>11. Highest Sales per Client</h3>
+<p><strong>Objective:</strong> Identify the maximum sales value for each client.</p>
 
-Objective: Get the names of employees sorted by their salary in descending order.
-Query:
-sql
-Copy code
-SELECT first_name, last_name 
-FROM employees 
-ORDER BY salary DESC;
-Clients Sorted Alphabetically by Their Names
+<h3>12. Employees with Last Names Ending in 'son'</h3>
+<p><strong>Objective:</strong> Find employees whose last names end with 'son'.</p>
 
-Objective: Retrieve a list of clients sorted alphabetically by their names.
-Query:
-sql
-Copy code
-SELECT client_name 
-FROM clients 
-ORDER BY client_name;
+<h3>13. Supplier Names Containing 'Paper'</h3>
+<p><strong>Objective:</strong> List suppliers whose names include the word 'Paper'.</p>
 
+<h3>14. Employees' Salaries in Ascending Order</h3>
+<p><strong>Objective:</strong> Display employees sorted by salary from lowest to highest.</p>
 
-Additional Queries
-Highest Sales per Client
-Employees with Last Names Ending in 'son'
-Supplier Names Containing 'Paper'
-Employees' Salaries in Ascending Order
-Branch Names in Alphabetical Order
-Supplier Names and Supply Types by Supply Types
-Average Salary for Each Gender
-Number of Clients per Branch
-Maximum Total Sales per Client
-Branch Names and Employee Counts
-Number of Clients per Employee
-Average Birth Year per Branch
+<h3>15. Branch Names in Alphabetical Order</h3>
+<p><strong>Objective:</strong> Present branch names in alphabetical order.</p>
 
+<h3>16. Supplier Names and Supply Types by Supply Types</h3>
+<p><strong>Objective:</strong> List suppliers along with their supply types, sorted by supply type.</p>
 
-Conclusion
-The SQL queries provided in this project cover a range of data retrieval, aggregation, and filtering tasks, enabling the extraction of insights necessary for business analysis and decision-making.
+<h3>17. Average Salary for Each Gender</h3>
+<p><strong>Objective:</strong> Calculate the average salary for male and female employees.</p>
+
+<h3>18. Number of Clients per Branch</h3>
+<p><strong>Objective:</strong> Count the number of clients associated with each branch.</p>
+
+<h3>19. Maximum Total Sales per Client</h3>
+<p><strong>Objective:</strong> Find the highest total sales figure for each client.</p>
+
+<h3>20. Branch Names and Employee Counts</h3>
+<p><strong>Objective:</strong> List branch names and the total number of employees in each branch.</p>
+
+<h3>21. Number of Clients per Employee</h3>
+<p><strong>Objective:</strong> Retrieve the number of clients each employee works with.</p>
+
+<h3>22. Average Birth Year per Branch</h3>
+<p><strong>Objective:</strong> Calculate the average birth year of employees for each branch.</p>
+
+<h2>Conclusion</h2>
+<p>This project provides a comprehensive set of solutions for analyzing key aspects of employee and client data within an organization. The queries are designed to support business decisions by uncovering trends and patterns related to employee compensation, client engagement, and overall performance.</p>

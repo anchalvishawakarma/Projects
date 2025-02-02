@@ -4,8 +4,8 @@ import pickle
 import time
 
 # Load the trained model
-model = pickle.load(open("model.pkl", "rb"))
-scaler = pickle.load(open("scaler.pkl", "rb"))
+model = pickle.load(open("Concrete_Prediction_Model/model.pkl", "rb"))
+scaler = pickle.load(open("Concrete_Prediction_Model/scaler.pkl", "rb"))
 
 # Page Configurations
 st.set_page_config(page_title="Concrete Strength Predictor", page_icon="🏗️", layout="wide")
@@ -31,7 +31,7 @@ input_data_scaled = scaler.transform(input_data)
 st.title("🏗️ Concrete Compressive Strength Prediction")
 st.markdown("### Enter the values in the sidebar and click 'Predict' to get results!")
 
-st.image("img.png", use_container_width=True)
+st.image("Concrete_Prediction_Model/img.png", use_container_width=True)
 
 
 if st.button("Predict Strength 🚀"):
